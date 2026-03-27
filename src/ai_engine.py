@@ -6,8 +6,6 @@ api_key = os.getenv("GROQ_API_KEY")
 client = Groq(api_key=api_key)
 
 def generate_response(prompt):
-    if not api_key:
-        return "❌ API key not found"
     try:
         response = client.chat.completions.create(
             model="llama3-8b-8192",
@@ -17,4 +15,4 @@ def generate_response(prompt):
         )
         return response.choices[0].message.content
     except Exception as e:
-        return "⚠️ AI error. Check API key or try again."
+        return f"❌ ERROR: {str(e)}"
