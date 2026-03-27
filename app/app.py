@@ -13,6 +13,8 @@ st.title("💻 AI Code Reviewer")
 code = st.text_area("Paste your code here", height=200)
 
 if st.button("Analyze Code"):
+    with st.spinner("Analyzing code..."):
+    st.write(generate_response(explanation_prompt))
     if code:
 
         st.subheader("📖 Code Explanation")
