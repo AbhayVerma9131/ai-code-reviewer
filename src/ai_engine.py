@@ -1,19 +1,20 @@
 from transformers import pipeline
 
-# Stable lightweight model
+# VERY LIGHT model (stable on Streamlit)
 generator = pipeline(
     "text-generation",
-    model="gpt2"
+    model="sshleifer/tiny-gpt2"
 )
 
 def generate_response(prompt):
+    with st.spinner("Analyzing code..."):
+    st.write(generate_response(explanation_prompt))
     try:
         response = generator(
             prompt,
-            max_new_tokens=100,
-            do_sample=True,
-            temperature=0.7
+            max_new_tokens=50,
+            do_sample=True
         )
         return response[0]["generated_text"]
     except Exception as e:
-        return "⚠️ AI model temporarily unavailable. Please try again."
+        return "⚠️ AI model loading issue. Try again in a few seconds."
