@@ -1,18 +1,16 @@
-from transformers import pipeline
+from groq import Groq
+import os
 
-# VERY LIGHT model (stable on Streamlit)
-generator = pipeline(
-    "text-generation",
-    model="sshleifer/tiny-gpt2"
-)
+client = Groq(api_key=os.getenv("GROQ_API_KEY"))
 
 def generate_response(prompt):
     try:
-        response = generator(
-            prompt,
-            max_new_tokens=50,
-            do_sample=True
+        response = client.chat.completions.create(
+            model="llama3-8b-8192",
+            messages=[
+                {"role": "user", "content": prompt}
+            ]
         )
-        return response[0]["generated_text"]
+        return response.choices[0].message.content
     except Exception as e:
-        return "⚠️ AI model loading issue. Try again in a few seconds."
+        return "⚠️ AI error. Check API key or try again."
