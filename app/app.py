@@ -13,18 +13,18 @@ st.title("💻 AI Code Reviewer")
 code = st.text_area("Paste your code here", height=200)
 
 if st.button("Analyze Code"):
-    with st.spinner("Analyzing code..."):
-    st.write(generate_response(explanation_prompt))
     if code:
 
-        st.subheader("📖 Code Explanation")
-        explanation_prompt = f"Explain this code in simple terms:\n{code}"
-        st.write(generate_response(explanation_prompt))
+        with st.spinner("Analyzing code..."):
 
-        st.subheader("⚠️ Issues Detected")
-        issue_prompt = f"Find issues or bad practices in this code:\n{code}"
-        st.write(generate_response(issue_prompt))
+            st.subheader("📖 Code Explanation")
+            explanation_prompt = f"Explain this Python code clearly:\n{code}"
+            st.write(generate_response(explanation_prompt))
 
-        st.subheader("🚀 Improvements")
-        improve_prompt = f"Suggest improvements for this code:\n{code}"
-        st.write(generate_response(improve_prompt))
+            st.subheader("⚠️ Issues Detected")
+            issue_prompt = f"Find issues or bad practices in this Python code:\n{code}"
+            st.write(generate_response(issue_prompt))
+
+            st.subheader("🚀 Improvements")
+            improve_prompt = f"Suggest improvements for this Python code:\n{code}"
+            st.write(generate_response(improve_prompt))
