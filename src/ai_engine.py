@@ -4,9 +4,10 @@ from groq import Groq
 api_key = os.getenv("GROQ_API_KEY")
 
 client = Groq(api_key=api_key)
-if not api_key:
-    return "❌ API key not found"
+
 def generate_response(prompt):
+    if not api_key:
+    return "❌ API key not found"
     try:
         response = client.chat.completions.create(
             model="llama3-8b-8192",
