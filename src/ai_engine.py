@@ -1,8 +1,11 @@
-from groq import Groq
 import os
+from groq import Groq
 
-client = Groq(api_key=os.getenv("GROQ_API_KEY"))
+api_key = os.getenv("GROQ_API_KEY")
 
+client = Groq(api_key=api_key)
+if not api_key:
+    return "❌ API key not found"
 def generate_response(prompt):
     try:
         response = client.chat.completions.create(
