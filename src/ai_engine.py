@@ -7,8 +7,6 @@ generator = pipeline(
 )
 
 def generate_response(prompt):
-    with st.spinner("Analyzing code..."):
-    st.write(generate_response(explanation_prompt))
     try:
         response = generator(
             prompt,
