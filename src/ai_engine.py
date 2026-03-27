@@ -7,7 +7,7 @@ client = Groq(api_key=api_key)
 
 def generate_response(prompt):
     if not api_key:
-    return "❌ API key not found"
+        return "❌ API key not found"
     try:
         response = client.chat.completions.create(
             model="llama3-8b-8192",
